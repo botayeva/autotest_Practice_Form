@@ -1,12 +1,8 @@
 package com.demoqa;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -16,6 +12,7 @@ public class Demoqatest {
     @BeforeAll
     static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";
+        Configuration.baseUrl = "https://demoqa.com";
     }
 
     @Test
@@ -37,8 +34,10 @@ public class Demoqatest {
         $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#uploadPicture").uploadFromClasspath("pic.png");
         $("#currentAddress").setValue("Example address");
-        $("#react-select-3-input").setValue("NCR").pressEnter();
-        $("#react-select-4-input").setValue("Delhi").pressEnter();
+        $("#stateCity-wrapper").$("#state").click();
+        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#stateCity-wrapper").$("#city").click();
+        $("#stateCity-wrapper").$(byText("Delhi")).click();
         $("#submit").click();
 
 
